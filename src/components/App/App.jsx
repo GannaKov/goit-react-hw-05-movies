@@ -1,5 +1,6 @@
 import { Routes, Route} from "react-router-dom";
 import React from 'react';
+import { Toaster } from 'react-hot-toast'
 //import React, { useState } from 'react';
 import { GlobalStyle } from 'CreateGlobalStyle';
 import { Home } from "../../pages/Home";
@@ -11,7 +12,18 @@ export const App = () => {
 
   return (
     <Container>
-      <GlobalStyle /> 
+      <GlobalStyle />  
+      <Toaster toastOptions={{
+      
+      error: {duration: 3000,
+        style: { border: '1px solid red',
+        padding: '16px',
+        
+          minWidth: '450px',
+         
+        },
+      },
+    }}/>
       <Header> 
         <nav>
       <Link to="/" end>
