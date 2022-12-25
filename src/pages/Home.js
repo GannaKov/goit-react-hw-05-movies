@@ -1,6 +1,7 @@
 import React , {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
 import { fetchFilms } from 'components/Utils/FetchMovies';
+import { FilmsList } from 'components/FilmList/FilmList';
 
 const Status = {
     IDLE: 'idle',
@@ -28,17 +29,20 @@ export const Home = () => {
 }, [])
 if (status === 'resolved'){ console.log(films)
     return (
-    
-        <ul>{films.map(film => (
-      <li 
-      key={film.id} >{film.original_title} 
-      </li>
-    ))}</ul>
+    <main>
+   <FilmsList films={films}></FilmsList>
+      </main>
+       
      
    
   );}
    
   };
+//   <ul>{films.map(film => (
+//     <li 
+//     key={film.id} >{film.original_title} 
+//     </li>
+//   ))}</ul>
   //https://api.themoviedb.org/3/trending/all/day?api_key=894ef72300682f1db325dae2afe3e7e2
 
 //   function fetchMovies(page) {
