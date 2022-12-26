@@ -17,12 +17,12 @@ export const Movies =()=>{
    
     const [searchParams, setSearchParams] = useSearchParams();
     const queryFilm = searchParams.get("query");
-    console.log("query",queryFilm)
+   
 
 const handleFormSubmit = query => {
     const nextQuery = query!== "" ? { query } : {};
     setSearchParams(nextQuery);
-    console.log("searchParams",searchParams)
+    
     
     //setPage(1) 
 };
@@ -31,16 +31,33 @@ useEffect(() => {
     if (queryFilm){setStatus(Status.PENDING )
        const searchUrl =
        `${BASE_URL}search/movie?api_key=${keyApi}&query=${queryFilm}&page=`;
-console.log(searchUrl)
-  fetchFilms(1,searchUrl)
-   .then(films=>{if(films.results.length===0){
-       toast.error('We did not find anything. Try again with a new word!');
-       setStatus(Status.IDLE ) 
-       setSearchParams({})
-   return}
-       setFilms(films.results)
+
+async function fetchData() {
+    try { 
+        const films  = await fetchFilms(1,searchUrl);
+    if(films.results.length===0){
+        toast.error('We did not find anything. Try again with a new word!');
+        setStatus(Status.IDLE ) 
+        setSearchParams({})
+    return}
+   
+    setFilms(films.results)
+    setStatus(Status.RESOLVED)
+} catch (error) {setStatus(Status.REJECTED )
+    toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
+  position: 'top-center'}, ) 
+}
+}
+
+//   fetchFilms(1,searchUrl)
+//    .then(films=>{if(films.results.length===0){
+//        toast.error('We did not find anything. Try again with a new word!');
+//        setStatus(Status.IDLE ) 
+//        setSearchParams({})
+//    return}
+    //    setFilms(films.results)
       
-   setStatus(Status.RESOLVED)
+//    setStatus(Status.RESOLVED)
    // if(page === 1){ 
    //     setPhotos(photos.hits)
    //     setStatus(Status.RESOLVED)
@@ -53,14 +70,16 @@ console.log(searchUrl)
    //  }  
 
 
-})//end then
-   .catch( () => 
-   {setStatus(Status.REJECTED )
-       toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
-     position: 'top-center'}, ) 
- })//end catch}
-   
-}}, [queryFilm, setSearchParams])
+// })//end then
+//    .catch( () => 
+//    {setStatus(Status.REJECTED )
+//        toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
+//      position: 'top-center'}, ) 
+//  })//end catch}
+fetchData();
+}
+ 
+}, [queryFilm, setSearchParams])
 
 // console.log("in F",films)
 if(status==="pending"){return <Loader/>}

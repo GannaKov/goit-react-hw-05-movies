@@ -15,13 +15,24 @@ export const Home = () => {
   useEffect(() => {setStatus(Status.PENDING )
     const trendUrl =
     `${BASE_URL}trending/movie/day?api_key=${keyApi}&page=`;
-    fetchFilms(1,trendUrl).then(films=>{setFilms(films.results)
-        setStatus(Status.RESOLVED)})//end then
-        .catch( () => 
-        {setStatus(Status.REJECTED )
-            toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
-          position: 'top-center'}, ) 
-      })//end catch
+    async function fetchData() {
+      try {
+        const films  = await fetchFilms(1,trendUrl);
+        setFilms(films.results)
+        setStatus(Status.RESOLVED)}
+        catch (err){setStatus(Status.REJECTED )
+          toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
+        position: 'top-center'}, ) }
+    }
+    
+    // fetchFilms(1,trendUrl).then(films=>{setFilms(films.results)
+    //     setStatus(Status.RESOLVED)})//end then
+      //   .catch( () => 
+      //   {setStatus(Status.REJECTED )
+      //       toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
+      //     position: 'top-center'}, ) 
+      // })//end catch
+      fetchData()  
 }, [])
 if (status === 'resolved'){ console.log(films)
     return (
