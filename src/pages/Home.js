@@ -13,7 +13,7 @@ export const Home = () => {
     const trendUrl =
     'https://api.themoviedb.org/3/trending/movie/day?api_key=894ef72300682f1db325dae2afe3e7e2&page=';
    
-  const [ films, setFilms] = useState([]); 
+  const [ films, setFilms] = useState(null); 
   const [ status, setStatus] = useState("Status.IDLE"); 
 //   const [  totalHits, setTotalHits] = useState(0); 
 //   const KEY = '894ef72300682f1db325dae2afe3e7e2';

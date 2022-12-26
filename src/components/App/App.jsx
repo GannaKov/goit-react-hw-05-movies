@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast'
 //import React, { useState } from 'react';
 import { GlobalStyle } from 'CreateGlobalStyle';
 import { Home } from "../../pages/Home";
+import { Movies } from "pages/Movies";
 import { Link,Container, Header} from "./App.styled";
 
 
@@ -35,7 +36,7 @@ export const App = () => {
      
       <Routes>
     <Route path="/" element={<Home />}/>
-    <Route path="/movies" element={<div>Movies</div>} />
+    <Route path="/movies" element={<Movies/>} />
        
         <Route path="*" element={<div>NotFound </div>} />
       </Routes>
