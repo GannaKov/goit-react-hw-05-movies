@@ -16,24 +16,23 @@ export const Movies =()=>{
     const [ status, setStatus] = useState("Status.IDLE");
     const [ films, setFilms] = useState(null); 
     const [searchParams, setSearchParams] = useSearchParams();
-    const name = searchParams.get("name");
-    const [searchWord, setSearchWord] = useState("");
-  
-    console.log("name",name)
- //const [ films, setFilms] = useState(null); 
-//   const [ status, setStatus] = useState("Status.IDLE"); 
-const handleFormSubmit = searchWord => {
-    setSearchParams(searchWord)
-    setSearchWord(searchWord)
-    console.log("searchWord",searchWord)
+    const queryFilm = searchParams.get("query");
+    console.log("query",queryFilm)
+
+const handleFormSubmit = query => {
+    const nextQuery = query!== "" ? { query } : {};
+    setSearchParams(nextQuery);
+    console.log("searchParams",searchParams)
+   
     //setPage(1) 
 };
 const keyApi='894ef72300682f1db325dae2afe3e7e2'
-const searchUrl =
- `https://api.themoviedb.org/3/search/movie?api_key=${keyApi}&query=${searchWord}&page=`;
-useEffect(() => {  if (searchWord){setStatus(Status.PENDING )
 
-console.log(searchUrl,searchWord)
+useEffect(() => { 
+     if (queryFilm){setStatus(Status.PENDING )
+        const searchUrl =
+        `https://api.themoviedb.org/3/search/movie?api_key=${keyApi}&query=${queryFilm}&page=`;
+console.log(searchUrl)
     fetchFilms(1,searchUrl).then(films=>{setFilms(films.results)
        
     setStatus(Status.RESOLVED)})//end then
@@ -43,8 +42,8 @@ console.log(searchUrl,searchWord)
       position: 'top-center'}, ) 
   })//end catch}
     
-}}, [searchWord, searchUrl])
-console.log("in F",films)
+}}, [queryFilm])
+// console.log("in F",films)
   return ( 
     <main>
            <Searchbar onSubm={handleFormSubmit}/>
@@ -60,4 +59,4 @@ console.log("in F",films)
 }
 //if (status === 'resolved'){ 
  //   <FilmsList films={films}></FilmsList>}
-//https://api.themoviedb.org/3/search/company?api_key=<<api_key>>&page=1
+//https://api.themoviedb.org/3/search/movie?api_key=894ef72300682f1db325dae2afe3e7e2&page=1&query=dog
