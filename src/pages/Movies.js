@@ -1,16 +1,19 @@
 import React from 'react';
+import  {  useState, useEffect}from 'react';
+import toast from 'react-hot-toast'
 import { useSearchParams } from "react-router-dom";
-
+import { Status, keyApi, fetchFilms,BASE_URL} from 'components/Utils/FetchMovies';
 import { Loader } from 'components/Loader/Loader';
 import { Searchbar } from 'components/SearchBar/SearchBar';
 
 import { FilmsList } from 'components/FilmList/FilmList';
 //  import { status,films } from 'hooks/fetchControls';
-import { useFetchControls  } from 'hooks/fetchControls';
+// import { useFetchControls  } from 'hooks/fetchControls';
 
 export const Movies =()=>{  
-   
-    // const [ status, setStatus] = useState("Status.IDLE");
+    const [ status, setStatus] = useState("Status.IDLE"); 
+    const [ films, setFilms] = useState (null)
+  
    
     const [searchParams, setSearchParams] = useSearchParams();
     const queryFilm = searchParams.get("query");
@@ -24,8 +27,41 @@ const handleFormSubmit = query => {
     //setPage(1) 
 };
 // const keyApi='894ef72300682f1db325dae2afe3e7e2'
+useEffect(() => { 
+    if (queryFilm){setStatus(Status.PENDING )
+       const searchUrl =
+       `${BASE_URL}search/movie?api_key=${keyApi}&query=${queryFilm}&page=`;
+console.log(searchUrl)
+  fetchFilms(1,searchUrl)
+   .then(films=>{if(films.results.length===0){
+       toast.error('We did not find anything. Try again with a new word!');
+       setStatus(Status.IDLE ) 
+       setSearchParams({})
+   return}
+       setFilms(films.results)
+      
+   setStatus(Status.RESOLVED)
+   // if(page === 1){ 
+   //     setPhotos(photos.hits)
+   //     setStatus(Status.RESOLVED)
+   //     setTotalHits(photos.totalHits )
+   //      }
+   //    else{ 
+   //        setPhotos(prev=>[...prev,...photos.hits])
+   //     setStatus(Status.RESOLVED)
+   //     setTotalHits(photos.totalHits )
+   //  }  
 
-const { status, films}=useFetchControls (queryFilm)
+
+})//end then
+   .catch( () => 
+   {setStatus(Status.REJECTED )
+       toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
+     position: 'top-center'}, ) 
+ })//end catch}
+   
+}}, [queryFilm, setSearchParams])
+
 // console.log("in F",films)
 if(status==="pending"){return <Loader/>}
 

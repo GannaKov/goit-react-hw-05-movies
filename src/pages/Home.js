@@ -1,17 +1,11 @@
 import React , {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
-import { fetchFilms } from 'components/Utils/FetchMovies';
 import { FilmsList } from 'components/FilmList/FilmList';
+import { Status, keyApi, fetchFilms,BASE_URL} from 'components/Utils/FetchMovies'; 
 
-const Status = {
-    IDLE: 'idle',
-    PENDING: 'pending',
-    RESOLVED: 'resolved',
-    REJECTED: 'rejected',
-  };
+
 export const Home = () => {
-    const trendUrl =
-    'https://api.themoviedb.org/3/trending/movie/day?api_key=894ef72300682f1db325dae2afe3e7e2&page=';
+    
    
   const [ films, setFilms] = useState(null); 
   const [ status, setStatus] = useState("Status.IDLE"); 
@@ -19,6 +13,8 @@ export const Home = () => {
 //   const KEY = '894ef72300682f1db325dae2afe3e7e2';
 
   useEffect(() => {setStatus(Status.PENDING )
+    const trendUrl =
+    `${BASE_URL}trending/movie/day?api_key=${keyApi}&page=`;
     fetchFilms(1,trendUrl).then(films=>{setFilms(films.results)
         setStatus(Status.RESOLVED)})//end then
         .catch( () => 
