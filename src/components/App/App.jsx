@@ -13,7 +13,7 @@ export const App = () => {
 
   return (
     <Container>
-      <GlobalStyle />  
+      <GlobalStyle />
       <Toaster toastOptions={{
       
       error: {duration: 3000,
@@ -24,7 +24,7 @@ export const App = () => {
          
         },
       },
-    }}/>
+    }} />
       <Header> 
         <nav>
       <Link to="/" end>

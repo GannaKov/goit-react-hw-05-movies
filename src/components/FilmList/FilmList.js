@@ -6,7 +6,7 @@ export const FilmsList = ({ films }) => {
     <Container>
       {films.map((film) => (
         <CardWrapper key={film.id}>
-          <Link to={`${film.id}`}>
+          <Link to={`/movies/${film.id}`}>
             <img src={'https://www.themoviedb.org/t/p/w500'+film.poster_path} alt={film.original_title} />
             <FilmName>{film.original_title}</FilmName>
           </Link>
@@ -16,3 +16,10 @@ export const FilmsList = ({ films }) => {
   );
 };
 // let imgSrc = 'https://www.themoviedb.org/t/p/w500' + poster_path;
+/* <ul>
+{trendingFilms?.map(film => (
+  <style.item key={film.id}>
+    <Link to={`/movies/${film.id}`}>{film.title}</Link>
+  </style.item>
+))}
+</ul> */
