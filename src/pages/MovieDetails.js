@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
+import { Link,Outlet } from "react-router-dom";
 import  {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
+
+
 
 export const FilmDetails = () => { 
     const [ status, setStatus] = useState("Status.IDLE"); 
@@ -39,6 +42,18 @@ export const FilmDetails = () => {
   <p>User Score: {film.popularity}</p>
   <p>Genres: {genres}</p>
         </div>
+        <p>Additional Information</p>
+        <ul>
+        <li>
+          <Link to="cast">Read about our cast</Link>
+
+        </li>
+        <li>
+          <Link to="reviews">Get to know the reviews</Link>
+        </li>
+        
+      </ul>
+      <Outlet />
       </main>
     );}
   };

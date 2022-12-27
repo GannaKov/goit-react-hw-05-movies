@@ -7,6 +7,9 @@ import { Home } from "../../pages/Home";
 import { Movies } from "pages/Movies";
 import { Link,Container, Header} from "./App.styled";
 import { FilmDetails } from "pages/MovieDetails";
+import { FilmCast } from "components/FilmCast/FilmCast";
+import { FilmReviews } from "components/Filmreviews/FilmReviews";
+
 
 export const App = () => {
  
@@ -37,7 +40,10 @@ export const App = () => {
       <Routes>
     <Route path="/" element={<Home />}/>
     <Route path="/movies" element={<Movies/>}/>
-    <Route path="/movies/:id" element={<FilmDetails />}/>
+    <Route path="/movies/:id" element={<FilmDetails />}>
+    <Route path="cast" element={<FilmCast/>} />
+  <Route path="reviews" element={<div> reviews </div>} /> 
+    </Route>
   
 
     
@@ -53,5 +59,3 @@ export const App = () => {
 // export const getProductById = (productId) => {
 //   return products.find((product) => product.id === productId);
 // };
-/* <Route path="cast" element={<div>cast </div>} />
-  <Route path="reviews" element={<div> reviews </div>} /> */
