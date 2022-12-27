@@ -2,6 +2,7 @@ import  {  useState, useEffect}from 'react';
 import { useParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
+import { Loader } from 'components/Loader/Loader';
 
 //https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1
 
@@ -9,7 +10,7 @@ export const FilmReviews = () => {
     const {id} = useParams();
     const [ status, setStatus] = useState("Status.IDLE"); 
 const [reviews, setReviews] = useState (null)
-useEffect(() => {
+useEffect(() => {setStatus(Status.PENDING )
     async function fetchData() {
    try {
        const trendUrl =
@@ -27,6 +28,7 @@ useEffect(() => {
      
  }
  fetchData()},[id])
+ if(status==="pending"){return <Loader/>}
  if (status === 'resolved'){ 
    
 

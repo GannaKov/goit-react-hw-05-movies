@@ -2,12 +2,12 @@ import  {  useState, useEffect}from 'react';
 import { useParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
-
+import { Loader } from 'components/Loader/Loader';
 
 export const FilmCast = () => {const {id} = useParams();
 const [ status, setStatus] = useState("Status.IDLE"); 
 const [ cast, setCast] = useState (null)
-useEffect(() => {
+useEffect(() => {setStatus(Status.PENDING )
     async function fetchData() {
    try {
        const trendUrl =
@@ -25,6 +25,7 @@ useEffect(() => {
      
  }
  fetchData()},[id])
+ if(status==="pending"){return <Loader/>}
  if (status === 'resolved'){ 
    
 

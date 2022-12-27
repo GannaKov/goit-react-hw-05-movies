@@ -3,7 +3,7 @@ import { Link,Outlet } from "react-router-dom";
 import  {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
-
+import { Loader } from 'components/Loader/Loader';
 
 
 export const FilmDetails = () => { 
@@ -11,7 +11,7 @@ export const FilmDetails = () => {
     const [ film, setFilm] = useState (null)
     const {id} = useParams();
     
-    useEffect(() => {
+    useEffect(() => {setStatus(Status.PENDING )
          async function fetchData() {
         try {
             const trendUrl =
@@ -29,6 +29,7 @@ export const FilmDetails = () => {
           
       }
       fetchData()},[id])
+      if(status==="pending"){return <Loader/>}
       if (status === 'resolved'){ 
       const genres =film.genres.map((genre)=>genre.name).join(', ')
 

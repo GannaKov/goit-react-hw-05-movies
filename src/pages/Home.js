@@ -1,5 +1,6 @@
 import React , {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
+import { Loader } from 'components/Loader/Loader';
 import { FilmsList } from 'components/FilmList/FilmList';
 import { Status, keyApi, fetchFilms,BASE_URL} from 'components/Utils/FetchMovies'; 
 
@@ -34,6 +35,7 @@ export const Home = () => {
       // })//end catch
       fetchData()  
 }, [])
+if(status==="pending"){return <Loader/>}
 if (status === 'resolved'){ console.log(films)
     return (
     <main>
@@ -45,10 +47,4 @@ if (status === 'resolved'){ console.log(films)
   );}
    
   };
-//   <ul>
-//   {trendingFilms?.map(film => (
-//     <style.item key={film.id}>
-//       <Link to={`/movies/${film.id}`}>{film.title}</Link>
-//     </style.item>
-//   ))}
-// </ul>
+//  
