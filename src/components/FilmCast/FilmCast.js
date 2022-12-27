@@ -2,7 +2,7 @@ import  {  useState, useEffect}from 'react';
 import { useParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
-import { Link } from "react-router-dom";
+
 
 export const FilmCast = () => {const {id} = useParams();
 const [ status, setStatus] = useState("Status.IDLE"); 
