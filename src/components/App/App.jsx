@@ -9,12 +9,15 @@ import { SharedLayout } from "components/SharedLayout/SharedLayout";
 //import { Movies } from "pages/Movies";
 
 //import { FilmDetails } from "pages/MovieDetails";
-import { FilmCast } from "components/FilmCast/FilmCast";
-import { FilmReviews } from "components/Filmreviews/FilmReviews";
+//import { FilmCast } from "components/FilmCast/FilmCast";
+//import { FilmReviews } from "components/Filmreviews/FilmReviews";
 
 const Home = lazy(() => import('../../pages/Home'));
 const Movies = lazy(() => import('../../pages/Movies'));
 const FilmDetails = lazy(() => import('../../pages/MovieDetails'));
+//-----------------
+const FilmReviews = lazy(() => import('../../components/Filmreviews/FilmReviews'));
+const FilmCast  = lazy(() => import('../../components/FilmCast/FilmCast'));
 export const App = () => {
  
 
@@ -28,7 +31,7 @@ export const App = () => {
         <Route path="cast" element={<FilmCast/>} />
         <Route path="reviews" element={<FilmReviews/>} /> 
      </Route>   
-    <Route path="*" element={<div>NotFound </div>} /> 
+     <Route path="*" element={<Home />} /> 
    </Route>
 </Routes>
 <Toaster toastOptions={{
@@ -48,6 +51,7 @@ export const App = () => {
 
   );
 };
+//<Route path="*" element={<Home />} /> 
 // https://api.themoviedb.org/3/movie/550?api_key=894ef72300682f1db325dae2afe3e7e2
 //{ <Route path="/" element={<Home />} />
 //<Route path="/about" element={<About />} />

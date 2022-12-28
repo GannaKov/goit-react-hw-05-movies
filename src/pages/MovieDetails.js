@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Link,Outlet,useParams,useLocation } from "react-router-dom";
 import  {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
@@ -56,8 +57,9 @@ export const FilmDetails = () => {
         </li>
         
       </ul>
-    
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
       </>
     );}
   };

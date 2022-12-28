@@ -51,3 +51,4 @@ useEffect(() => {setStatus(Status.PENDING )
    
  
   )}}
+  export default FilmReviews

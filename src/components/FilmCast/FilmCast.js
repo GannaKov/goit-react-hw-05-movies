@@ -40,11 +40,7 @@ useEffect(() => {setStatus(Status.PENDING )
             <p>Character {actor.character}</p>
         </li>
       ))}</ul>):(<p>There are no Information</p>)}
-    
-    
-   
       </div>
   );}
-
 }
-
+export default FilmCast
