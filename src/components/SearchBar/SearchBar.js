@@ -9,6 +9,7 @@ export const Searchbar =({onSubm})=>{
   const handleChange = evt => {
     setSearchWord(evt.currentTarget.value.toLowerCase());
   };
+  
   const handleSubmit = evt => {
     evt.preventDefault();
     if (searchWord.trim() === '') {

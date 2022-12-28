@@ -1,4 +1,3 @@
-import React from 'react';
 import  {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
 import { useSearchParams } from "react-router-dom";
@@ -13,8 +12,6 @@ import { FilmsList } from 'components/FilmList/FilmList';
 export const Movies =()=>{  
     const [ status, setStatus] = useState("Status.IDLE"); 
     const [ films, setFilms] = useState (null)
-  
-   
     const [searchParams, setSearchParams] = useSearchParams();
     const queryFilm = searchParams.get("query");
    
@@ -49,33 +46,6 @@ async function fetchData() {
 }
 }
 
-//   fetchFilms(1,searchUrl)
-//    .then(films=>{if(films.results.length===0){
-//        toast.error('We did not find anything. Try again with a new word!');
-//        setStatus(Status.IDLE ) 
-//        setSearchParams({})
-//    return}
-    //    setFilms(films.results)
-      
-//    setStatus(Status.RESOLVED)
-   // if(page === 1){ 
-   //     setPhotos(photos.hits)
-   //     setStatus(Status.RESOLVED)
-   //     setTotalHits(photos.totalHits )
-   //      }
-   //    else{ 
-   //        setPhotos(prev=>[...prev,...photos.hits])
-   //     setStatus(Status.RESOLVED)
-   //     setTotalHits(photos.totalHits )
-   //  }  
-
-
-// })//end then
-//    .catch( () => 
-//    {setStatus(Status.REJECTED )
-//        toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
-//      position: 'top-center'}, ) 
-//  })//end catch}
 fetchData();
 }
  

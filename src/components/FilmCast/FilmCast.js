@@ -30,7 +30,7 @@ useEffect(() => {setStatus(Status.PENDING )
    
 
   return (
-    <main>
+    
       
       <div>
         {cast.length?( <ul> {cast.map((actor) => (
@@ -44,9 +44,6 @@ useEffect(() => {setStatus(Status.PENDING )
     
    
       </div>
-     
-   
-    </main>
   );}
 
 }

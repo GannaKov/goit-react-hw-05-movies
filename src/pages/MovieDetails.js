@@ -1,16 +1,18 @@
-import { useParams } from "react-router-dom";
-import { Link,Outlet } from "react-router-dom";
+import { Link,Outlet,useParams,useLocation } from "react-router-dom";
 import  {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
 import { Loader } from 'components/Loader/Loader';
-
+import { GoBack } from "components/GoBack/GoBack";
 
 export const FilmDetails = () => { 
     const [ status, setStatus] = useState("Status.IDLE"); 
     const [ film, setFilm] = useState (null)
     const {id} = useParams();
-    
+    const location = useLocation();
+    console.log("Details",location)
+  const backLinkHref = location.state?.from ?? "/home";
+
     useEffect(() => {setStatus(Status.PENDING )
          async function fetchData() {
         try {
@@ -35,7 +37,7 @@ export const FilmDetails = () => {
 
     return (
       <main>
-        
+         <GoBack to={backLinkHref}>Back to list</GoBack>
         <div>
         <img src={'https://www.themoviedb.org/t/p/w500'+film.poster_path} alt={film.original_title}/>
         <h2>{film.original_title}</h2>
