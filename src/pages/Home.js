@@ -47,4 +47,4 @@ if (status === 'resolved'){ console.log(films)
   );}
    
   };
-//  
+  export default Home;  

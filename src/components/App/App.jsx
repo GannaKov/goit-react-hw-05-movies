@@ -1,22 +1,26 @@
 import { Routes, Route} from "react-router-dom";
+import { lazy } from 'react';
 import { GlobalStyle } from 'CreateGlobalStyle';
 import { Toaster } from 'react-hot-toast'
 
 
 import { SharedLayout } from "components/SharedLayout/SharedLayout";
-import { Home } from "../../pages/Home";
-import { Movies } from "pages/Movies";
+// import { Home } from "../../pages/Home";
+//import { Movies } from "pages/Movies";
 
-import { FilmDetails } from "pages/MovieDetails";
+//import { FilmDetails } from "pages/MovieDetails";
 import { FilmCast } from "components/FilmCast/FilmCast";
 import { FilmReviews } from "components/Filmreviews/FilmReviews";
 
-
+const Home = lazy(() => import('../../pages/Home'));
+const Movies = lazy(() => import('../../pages/Movies'));
+const FilmDetails = lazy(() => import('../../pages/MovieDetails'));
 export const App = () => {
  
 
   return (
-   <div> <Routes>
+   <div> 
+    <Routes>
    <Route path="/" element={<SharedLayout />}>
      <Route index element={<Home />} />
      <Route path="movies" element={<Movies/>}/>

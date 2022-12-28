@@ -68,6 +68,7 @@ if(status==="pending"){return <Loader/>}
        
       
 }
+export default Movies;
 //if (status === 'resolved'){ 
  //   <FilmsList films={films}></FilmsList>}
 //https://api.themoviedb.org/3/search/movie?api_key=894ef72300682f1db325dae2afe3e7e2&page=1&query=dog
