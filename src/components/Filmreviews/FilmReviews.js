@@ -31,12 +31,12 @@ useEffect(() => {setStatus(Status.PENDING )
  if(status==="pending"){return <Loader/>}
  if (status === 'resolved'){ 
    
-
+  
   return (
-    <main>
+  
       
       <div>
-      <ul> {reviews.map((review) => (
+        {reviews.length?(<ul> {reviews.map((review) => (
         <li key={review.id  }>
             
             <p>{review.author}</p>
@@ -44,9 +44,10 @@ useEffect(() => {setStatus(Status.PENDING )
             <p>{review.content}</p>
         </li>
       ))}</ul>
-   
+   ):(<p>There are no reviews yet</p>)}
+      
       </div>
      
    
-    </main>
-  );}}
+ 
+  )}}

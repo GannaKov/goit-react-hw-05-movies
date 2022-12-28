@@ -33,13 +33,14 @@ useEffect(() => {setStatus(Status.PENDING )
     <main>
       
       <div>
-     <ul> {cast.map((actor) => (
+        {cast.length?( <ul> {cast.map((actor) => (
         <li key={actor.credit_id  }>
             <img src={'https://www.themoviedb.org/t/p/w300'+actor.profile_path} alt={actor.name} />
             <h3>{actor.name}</h3>
             <p>Character {actor.character}</p>
         </li>
-      ))}</ul>
+      ))}</ul>):(<p>There are no Information</p>)}
+    
     
    
       </div>
