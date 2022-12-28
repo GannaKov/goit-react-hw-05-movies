@@ -55,13 +55,13 @@ fetchData();
 if(status==="pending"){return <Loader/>}
 
   return ( 
-    <main>
+    <>
            <Searchbar onSubm={handleFormSubmit}/>
            {status==="pending" && (<Loader/>)}
           { status === 'resolved'?
  (<FilmsList films={films}></FilmsList>):null}
 
-    </main>    
+    </>    
   )
    
     

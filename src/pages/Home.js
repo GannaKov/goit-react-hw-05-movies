@@ -38,9 +38,9 @@ export const Home = () => {
 if(status==="pending"){return <Loader/>}
 if (status === 'resolved'){ console.log(films)
     return (
-    <main>
+    <>
    <FilmsList films={films}></FilmsList>
-      </main>
+      </>
        
      
    

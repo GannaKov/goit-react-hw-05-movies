@@ -36,7 +36,7 @@ export const FilmDetails = () => {
       const genres =film.genres.map((genre)=>genre.name).join(', ')
 
     return (
-      <main>
+      <>
          <GoBack to={backLinkHref}>Back to list</GoBack>
         <div>
         <img src={'https://www.themoviedb.org/t/p/w500'+film.poster_path} alt={film.original_title}/>
@@ -56,8 +56,9 @@ export const FilmDetails = () => {
         </li>
         
       </ul>
+    
       <Outlet />
-      </main>
+      </>
     );}
   };
   //https://api.themoviedb.org/3/movie/76600?api_key=894ef72300682f1db325dae2afe3e7e2
