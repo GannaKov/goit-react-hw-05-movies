@@ -28,11 +28,12 @@ export const StyledLink = styled(Link)`
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: orphans: ;;
+  color: orphans;
   text-decoration: none;
 :hover {
     color: orangered;
   }
-`;
-export const FilmAddList= styled.ul`list-style: inside;`
+`
+export const FilmAddList= styled.ul`
+list-style: inside;`
 

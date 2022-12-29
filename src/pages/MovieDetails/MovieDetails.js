@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Link,Outlet,useParams,useLocation } from "react-router-dom";
+import { Outlet,useParams,useLocation } from "react-router-dom";
 import  {  useState, useEffect}from 'react';
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
