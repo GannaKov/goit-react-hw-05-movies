@@ -16,7 +16,7 @@ export const FilmDetails = () => {
     const location = useLocation();
     console.log("Details",location)
    const backLinkHref = location.state?.from ?? "/";
-  
+   console.log("backLinkHref",backLinkHref)
     useEffect(() => {setStatus(Status.PENDING )
          async function fetchData() {
         try {

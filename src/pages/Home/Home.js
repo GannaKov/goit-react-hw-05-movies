@@ -1,4 +1,5 @@
-import React , {  useState, useEffect}from 'react';
+import {  useState, useEffect}from 'react';
+import { useLocation } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { Loader } from 'components/Loader/Loader';
 import { FilmsList } from 'components/FilmList/FilmList';
@@ -7,7 +8,8 @@ import { Status, keyApi, fetchFilms,BASE_URL} from 'components/Utils/FetchMovies
 
 export const Home = () => {
     
-   
+  const location = useLocation();
+  console.log("Home",location)
   const [ films, setFilms] = useState(null); 
   const [ status, setStatus] = useState("Status.IDLE"); 
 //   const [  totalHits, setTotalHits] = useState(0); 
@@ -39,7 +41,7 @@ if(status==="pending"){return <Loader/>}
 if (status === 'resolved'){ 
     return (
     <>
-   <FilmsList films={films}></FilmsList>
+   <FilmsList location={location }films={films}></FilmsList>
       </>
        
      

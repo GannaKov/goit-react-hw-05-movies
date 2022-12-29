@@ -1,4 +1,5 @@
 import  {  useState, useEffect}from 'react';
+import { useLocation } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { useSearchParams } from "react-router-dom";
 import { Status, keyApi, fetchFilms,BASE_URL} from 'components/Utils/FetchMovies';
@@ -10,6 +11,8 @@ import { FilmsList } from 'components/FilmList/FilmList';
 // import { useFetchControls  } from 'hooks/fetchControls';
 
 export const Movies =()=>{  
+  const location = useLocation();
+  console.log("Movies",location)
     const [ status, setStatus] = useState("Status.IDLE"); 
     const [ films, setFilms] = useState (null)
     const [searchParams, setSearchParams] = useSearchParams();
@@ -57,7 +60,7 @@ if(status==="pending"){return <Loader/>}
            <Searchbar onSubm={handleFormSubmit}/>
            {status==="pending" && (<Loader/>)}
           { status === 'resolved'?
- (<FilmsList films={films}></FilmsList>):null}
+ (<FilmsList location={location} films={films}></FilmsList>):null}
 
     </>    
   )
