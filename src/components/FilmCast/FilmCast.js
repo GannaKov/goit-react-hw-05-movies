@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
 import { Loader } from 'components/Loader/Loader';
+import { CastList } from './FilmCast.styled';
 
 export const FilmCast = () => {const {id} = useParams();
 const [ status, setStatus] = useState("Status.IDLE"); 
@@ -33,13 +34,14 @@ useEffect(() => {setStatus(Status.PENDING )
     
       
       <div>
-        {cast.length?( <ul> {cast.map((actor) => (
+        {cast.length?(
+           <CastList> {cast.map((actor) => (
         <li key={actor.credit_id  }>
             <img src={'https://www.themoviedb.org/t/p/w300'+actor.profile_path} alt={actor.name} />
             <h3>{actor.name}</h3>
             <p>Character {actor.character}</p>
         </li>
-      ))}</ul>):(<p>There are no Information</p>)}
+      ))}</CastList>):(<p>There are no Information</p>)}
       </div>
   );}
 }

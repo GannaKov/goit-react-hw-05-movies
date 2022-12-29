@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
 import { Loader } from 'components/Loader/Loader';
+import { ReviewsItem, ReviesList,ReviewAuthor,ReviewDate } from './FilmReviews.styled';
 
 //https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1
 
@@ -35,18 +36,19 @@ useEffect(() => {setStatus(Status.PENDING )
   return (
   
       
-      <div>
-        {reviews.length?(<ul> {reviews.map((review) => (
-        <li key={review.id  }>
+      <>
+        {reviews.length?(
+        <ReviesList> {reviews.map((review) => (
+        <ReviewsItem key={review.id  }>
             
-            <p>{review.author}</p>
-            <p>{review.created_at}</p>
+            <ReviewAuthor>{review.author}</ReviewAuthor>
+            <ReviewDate>{review.created_at}</ReviewDate>
             <p>{review.content}</p>
-        </li>
-      ))}</ul>
+        </ReviewsItem>
+      ))}</ReviesList>
    ):(<p>There are no reviews yet</p>)}
       
-      </div>
+      </>
      
    
  
