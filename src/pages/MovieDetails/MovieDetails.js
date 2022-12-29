@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
 import { Loader } from 'components/Loader/Loader';
 import { GoBack } from "components/GoBack/GoBack";
+import { FilmBox,FilmInfoDiv,FilmInfoSpan, FilmInfoTitle, FilmInfoItem} from './MovieDetail.styled';
 
 export const FilmDetails = () => { 
     const [ status, setStatus] = useState("Status.IDLE"); 
@@ -39,13 +40,21 @@ export const FilmDetails = () => {
     return (
       <>
          <GoBack to={backLinkHref}>Back to list</GoBack>
-        <div>
-        <img src={'https://www.themoviedb.org/t/p/w500'+film.poster_path} alt={film.original_title}/>
-        <h2>{film.original_title}</h2>
- <p>Overview {film.overview}</p>
-  <p>User Score: {film.popularity}</p>
-  <p>Genres: {genres}</p>
-        </div>
+        <FilmBox>
+        <img src={'https://www.themoviedb.org/t/p/w400'+film.poster_path} alt={film.original_title}/>
+        <FilmInfoDiv>     
+           <FilmInfoTitle>{film.original_title}</FilmInfoTitle>
+           <ul>
+            <FilmInfoItem> <FilmInfoSpan>Overview:</FilmInfoSpan><p>{film.overview}</p></FilmInfoItem>
+            <FilmInfoItem><FilmInfoSpan>User Score:</FilmInfoSpan> <p>{film.popularity}</p></FilmInfoItem>
+            <FilmInfoItem> <FilmInfoSpan>Genres:</FilmInfoSpan><p> {genres}</p></FilmInfoItem>
+           </ul>
+
+  
+ 
+  </FilmInfoDiv>
+  
+        </FilmBox>
         <p>Additional Information</p>
         <ul>
         <li>

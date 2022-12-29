@@ -12,9 +12,9 @@ import { SharedLayout } from "components/SharedLayout/SharedLayout";
 //import { FilmCast } from "components/FilmCast/FilmCast";
 //import { FilmReviews } from "components/Filmreviews/FilmReviews";
 
-const Home = lazy(() => import('../../pages/Home'));
-const Movies = lazy(() => import('../../pages/Movies'));
-const FilmDetails = lazy(() => import('../../pages/MovieDetails'));
+const Home = lazy(() => import('../../pages/Home/Home'));
+const Movies = lazy(() => import('../../pages/Movies/Movies'));
+const FilmDetails = lazy(() => import('../../pages/MovieDetails/MovieDetails'));
 //-----------------
 const FilmReviews = lazy(() => import('../../components/Filmreviews/FilmReviews'));
 const FilmCast  = lazy(() => import('../../components/FilmCast/FilmCast'));
