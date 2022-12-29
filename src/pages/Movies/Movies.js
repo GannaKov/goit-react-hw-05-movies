@@ -50,8 +50,6 @@ fetchData();
 }
  
 }, [queryFilm, setSearchParams])
-
-// console.log("in F",films)
 if(status==="pending"){return <Loader/>}
 
   return ( 

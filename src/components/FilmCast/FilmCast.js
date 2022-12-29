@@ -17,7 +17,6 @@ useEffect(() => {setStatus(Status.PENDING )
      const cast = await fetchFilm(trendUrl);
      
      setCast(cast.cast)
-     console.log("cast", cast)
      setStatus(Status.RESOLVED)
    }
      catch (err){setStatus(Status.REJECTED )
@@ -33,7 +32,7 @@ useEffect(() => {setStatus(Status.PENDING )
   return (
     
       
-      <div>
+      <>
         {cast.length?(
            <CastList> {cast.map((actor) => (
         <li key={actor.credit_id  }>
@@ -42,7 +41,7 @@ useEffect(() => {setStatus(Status.PENDING )
             <p>Character {actor.character}</p>
         </li>
       ))}</CastList>):(<p>There are no Information</p>)}
-      </div>
+      </>
   );}
 }
 export default FilmCast

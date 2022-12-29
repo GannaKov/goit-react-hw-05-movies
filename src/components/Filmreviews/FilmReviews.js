@@ -20,7 +20,6 @@ useEffect(() => {setStatus(Status.PENDING )
      const data = await fetchFilm(trendUrl);
      
      setReviews(data.results)
-     console.log("reviews",data.results)
      setStatus(Status.RESOLVED)
    }
      catch (err){setStatus(Status.REJECTED )

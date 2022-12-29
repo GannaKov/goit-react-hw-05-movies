@@ -36,7 +36,7 @@ export const Home = () => {
       fetchData()  
 }, [])
 if(status==="pending"){return <Loader/>}
-if (status === 'resolved'){ console.log(films)
+if (status === 'resolved'){ 
     return (
     <>
    <FilmsList films={films}></FilmsList>

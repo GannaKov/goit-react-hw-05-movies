@@ -8,14 +8,15 @@ import { GoBack } from "components/GoBack/GoBack";
 import { FilmBox,FilmInfoDiv,FilmInfoSpan, FilmInfoTitle, FilmInfoItem,FilmAddTitle,FilmAddItem,
   StyledLink, FilmAddList} from './MovieDetail.styled';
 
-export const FilmDetails = () => { 
+export const FilmDetails = () => {  
+  
     const [ status, setStatus] = useState("Status.IDLE"); 
     const [ film, setFilm] = useState (null)
     const {id} = useParams();
     const location = useLocation();
     console.log("Details",location)
-  const backLinkHref = location.state?.from ?? "/";
-
+   const backLinkHref = location.state?.from ?? "/";
+  
     useEffect(() => {setStatus(Status.PENDING )
          async function fetchData() {
         try {
@@ -25,7 +26,7 @@ export const FilmDetails = () => {
           const film  = await fetchFilm(trendUrl);
           
           setFilm(film)
-          console.log("film", film )
+      
           setStatus(Status.RESOLVED)
         }
           catch (err){setStatus(Status.REJECTED )
@@ -40,6 +41,7 @@ export const FilmDetails = () => {
 
     return (
       <>
+         
          <GoBack to={backLinkHref}>Back to list</GoBack>
         <FilmBox>
         <img src={'https://www.themoviedb.org/t/p/w400'+film.poster_path} alt={film.original_title}/>
@@ -70,13 +72,7 @@ export const FilmDetails = () => {
     );}
   };
 
-  export default FilmDetails; 
-  //https://api.themoviedb.org/3/movie/76600?api_key=894ef72300682f1db325dae2afe3e7e2
-  //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-  //<img src={'https://www.themoviedb.org/t/p/w500'+film.poster_path} alt={film.original_title}/>
-  //https://api.themoviedb.org/3/movie/991833?api_key=894ef72300682f1db325dae2afe3e7e2
-  //{film.genres.map((genre)=>(<p>Genres: {genre.name}</p>)) }
-  //  <img src={'https://www.themoviedb.org/t/p/w500'+film.poster_path} alt={film.original_title}/>
-//   <h2>{film.original_title}</h2>
-//   <p>Overview {film.overview}</p>
-//   <p>User Score: {film.popularity}</p>
+  export default FilmDetails
+  //pathname:"/movies/10588"
+  //from: {pathname: '/movies', search: '?query=cat', hash: '', state: null, key: 'kx83p9oa'}
+ 
