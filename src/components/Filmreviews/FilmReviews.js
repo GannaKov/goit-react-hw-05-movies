@@ -32,25 +32,27 @@ useEffect(() => {setStatus(Status.PENDING )
  if(status==="pending"){return <Loader/>}
  if (status === 'resolved'){ 
    
+ const newDate =(time)=>{return new Date(time).toLocaleString()
   
+}
+
   return (
   
       
       <>
         {reviews.length?(
-        <ReviesList> {reviews.map((review) => (
-        <ReviewsItem key={review.id  }>
+        <ReviesList> {reviews.map(({id,author,created_at,content}) => (
+        <ReviewsItem key={id  }>
             
-            <ReviewAuthor>{review.author}</ReviewAuthor>
-            <ReviewDate>{review.created_at}</ReviewDate>
-            <p>{review.content}</p>
+            <ReviewAuthor>{author}</ReviewAuthor>
+           <ReviewDate >{newDate(created_at) }</ReviewDate>
+           
+            <p>{content}</p>
         </ReviewsItem>
       ))}</ReviesList>
    ):(<p>There are no reviews yet</p>)}
       
       </>
-     
-   
- 
   )}}
   export default FilmReviews
+  //newDate={created_at=>new Date(created_at).toLocaleString()}
