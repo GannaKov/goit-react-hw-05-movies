@@ -5,7 +5,8 @@ import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
 import { Loader } from 'components/Loader/Loader';
 import { GoBack } from "components/GoBack/GoBack";
-import { FilmBox,FilmInfoDiv,FilmInfoSpan, FilmInfoTitle, FilmInfoItem} from './MovieDetail.styled';
+import { FilmBox,FilmInfoDiv,FilmInfoSpan, FilmInfoTitle, FilmInfoItem,FilmAddTitle,FilmAddItem,
+  StyledLink, FilmAddList} from './MovieDetail.styled';
 
 export const FilmDetails = () => { 
     const [ status, setStatus] = useState("Status.IDLE"); 
@@ -49,23 +50,19 @@ export const FilmDetails = () => {
             <FilmInfoItem><FilmInfoSpan>User Score:</FilmInfoSpan> <p>{film.popularity}</p></FilmInfoItem>
             <FilmInfoItem> <FilmInfoSpan>Genres:</FilmInfoSpan><p> {genres}</p></FilmInfoItem>
            </ul>
-
-  
- 
   </FilmInfoDiv>
-  
-        </FilmBox>
-        <p>Additional Information</p>
-        <ul>
-        <li>
-          <Link to="cast">Read about our cast</Link>
+</FilmBox>
+        <FilmAddTitle>Additional Information</FilmAddTitle>
+        <FilmAddList>
+        <FilmAddItem>
+          <StyledLink  to="cast">Read about our cast</StyledLink>
 
-        </li>
-        <li>
-          <Link to="reviews">Get to know the reviews</Link>
-        </li>
+        </FilmAddItem>
+        <FilmAddItem>
+          <StyledLink  to="reviews">Get to know the reviews</StyledLink>
+        </FilmAddItem>
         
-      </ul>
+      </FilmAddList>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
