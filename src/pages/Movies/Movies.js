@@ -60,7 +60,7 @@ if(status==="pending"){return <Loader/>}
            <Searchbar onSubm={handleFormSubmit}/>
            {status==="pending" && (<Loader/>)}
           { status === 'resolved'?
- (<FilmsList location={location} films={films}></FilmsList>):null}
+ (<FilmsList location ={location} films={films}></FilmsList>):null}
 
     </>    
   )

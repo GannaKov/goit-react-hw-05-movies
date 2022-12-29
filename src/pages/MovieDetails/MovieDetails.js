@@ -9,14 +9,13 @@ import { FilmBox,FilmInfoDiv,FilmInfoSpan, FilmInfoTitle, FilmInfoItem,FilmAddTi
   StyledLink, FilmAddList} from './MovieDetail.styled';
 
 export const FilmDetails = () => {  
-  
+  const location = useLocation();
     const [ status, setStatus] = useState("Status.IDLE"); 
     const [ film, setFilm] = useState (null)
     const {id} = useParams();
-    const location = useLocation();
     console.log("Details",location)
-   const backLinkHref = location.state?.from ?? "/";
-   console.log("backLinkHref",backLinkHref)
+    const backLinkHref = location.state?.from ?? "/";
+    console.log("backLinkHref",backLinkHref)
     useEffect(() => {setStatus(Status.PENDING )
          async function fetchData() {
         try {
@@ -39,6 +38,8 @@ export const FilmDetails = () => {
       if (status === 'resolved'){ 
       const genres =film.genres.map((genre)=>genre.name).join(', ')
 
+     
+      
     return (
       <>
          
@@ -57,11 +58,11 @@ export const FilmDetails = () => {
         <FilmAddTitle>Additional Information</FilmAddTitle>
         <FilmAddList>
         <FilmAddItem>
-          <StyledLink  to="cast">Read about our cast</StyledLink>
+          <StyledLink  to="cast" state={{from:backLinkHref} }>Read about our cast</StyledLink>
 
         </FilmAddItem>
         <FilmAddItem>
-          <StyledLink  to="reviews">Get to know the reviews</StyledLink>
+          <StyledLink  to="reviews" state={{from:backLinkHref}}>Get to know the reviews</StyledLink>
         </FilmAddItem>
         
       </FilmAddList>
