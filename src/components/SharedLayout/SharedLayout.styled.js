@@ -17,7 +17,7 @@ export const Header = styled.header`
 export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0px  16px 16px;
 `;
 export const Link = styled(NavLink)`
   padding: 8px 16px;
