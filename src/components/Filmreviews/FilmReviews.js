@@ -32,27 +32,27 @@ useEffect(() => {setStatus(Status.PENDING )
  if(status==="pending"){return <Loader/>}
  if (status === 'resolved'){ 
    
- const newDate =(time)=>{return new Date(time).toLocaleString()
+//  const newDate =(time)=>{return new Date(time).toLocaleString()
   
-}
 
-  return (
+
+  return ( <>
+    {reviews.length?(
+    <ReviesList> {reviews.map(({id,author,created_at,content}) => (
+    <ReviewsItem key={id  }>
+        
+        <ReviewAuthor>{author}</ReviewAuthor>
+       <ReviewDate >{ new Date(created_at).toLocaleString() }</ReviewDate>
+       
+        <p>{content}</p>
+    </ReviewsItem>
+  ))}</ReviesList>
+):(<p>There are no reviews yet</p>)}
   
-      
-      <>
-        {reviews.length?(
-        <ReviesList> {reviews.map(({id,author,created_at,content}) => (
-        <ReviewsItem key={id  }>
-            
-            <ReviewAuthor>{author}</ReviewAuthor>
-           <ReviewDate >{newDate(created_at) }</ReviewDate>
-           
-            <p>{content}</p>
-        </ReviewsItem>
-      ))}</ReviesList>
-   ):(<p>There are no reviews yet</p>)}
-      
-      </>
-  )}}
+  </>)
+}
+}
   export default FilmReviews
   //newDate={created_at=>new Date(created_at).toLocaleString()}
+  //newDate={created_at=>new Date(created_at).toLocaleString()}
+  //newDate=(created_at)=>{ new Date(time).toLocaleString() }
