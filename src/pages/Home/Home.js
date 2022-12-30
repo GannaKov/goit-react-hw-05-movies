@@ -26,12 +26,10 @@ export const Home = () => {
       fetchData()  
 }, [])
 if(status==="pending"){return <Loader/>}
-if (status === 'resolved'){ 
-    return (
+if (status === 'resolved'){  return (
     <>
    <FilmsList location ={location} films={films}></FilmsList>
       </>
   );}
-   
   };
   export default Home;  
