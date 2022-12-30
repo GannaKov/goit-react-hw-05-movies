@@ -9,40 +9,31 @@ import { FilmBox,FilmInfoDiv,FilmInfoSpan, FilmInfoTitle, FilmInfoItem,FilmAddTi
   StyledLink, FilmAddList} from './MovieDetail.styled';
 
 export const FilmDetails = () => {  
+  
   const location = useLocation();
     const [ status, setStatus] = useState("Status.IDLE"); 
     const [ film, setFilm] = useState (null)
     const {id} = useParams();
-    console.log("Details",location)
     const backLinkHref = location.state?.from ?? "/";
-    console.log("backLinkHref",backLinkHref)
     useEffect(() => {setStatus(Status.PENDING )
          async function fetchData() {
         try {
             const trendUrl =
-            `${BASE_URL}movie/${id}?api_key=${keyApi}`;
-           
-          const film  = await fetchFilm(trendUrl);
-          
-          setFilm(film)
-      
+            `${BASE_URL}movie/${id}?api_key=${keyApi}`;           
+          const film  = await fetchFilm(trendUrl);         
+          setFilm(film)     
           setStatus(Status.RESOLVED)
         }
           catch (err){setStatus(Status.REJECTED )
             toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
-          position: 'top-center'}, ) }
-          
+          position: 'top-center'}, ) }          
       }
       fetchData()},[id])
       if(status==="pending"){return <Loader/>}
       if (status === 'resolved'){ 
-      const genres =film.genres.map((genre)=>genre.name).join(', ')
-
-     
-      
+      const genres =film.genres.map((genre)=>genre.name).join(', ') 
     return (
-      <>
-         
+      <>       
          <GoBack to={backLinkHref}>Back to list</GoBack>
         <FilmBox>
         <img src={'https://www.themoviedb.org/t/p/w400'+film.poster_path} alt={film.original_title}/>
@@ -59,12 +50,10 @@ export const FilmDetails = () => {
         <FilmAddList>
         <FilmAddItem>
           <StyledLink  to="cast" state={{from:backLinkHref} }>Read about our cast</StyledLink>
-
         </FilmAddItem>
         <FilmAddItem>
           <StyledLink  to="reviews" state={{from:backLinkHref}}>Get to know the reviews</StyledLink>
-        </FilmAddItem>
-        
+        </FilmAddItem>       
       </FilmAddList>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
@@ -74,6 +63,5 @@ export const FilmDetails = () => {
   };
 
   export default FilmDetails
-  //pathname:"/movies/10588"
-  //from: {pathname: '/movies', search: '?query=cat', hash: '', state: null, key: 'kx83p9oa'}
+ 
  

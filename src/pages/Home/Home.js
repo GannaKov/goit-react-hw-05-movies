@@ -9,12 +9,8 @@ import { Status, keyApi, fetchFilms,BASE_URL} from 'components/Utils/FetchMovies
 export const Home = () => {
     
   const location = useLocation();
-  console.log("Home",location)
   const [ films, setFilms] = useState(null); 
   const [ status, setStatus] = useState("Status.IDLE"); 
-//   const [  totalHits, setTotalHits] = useState(0); 
-//   const KEY = '894ef72300682f1db325dae2afe3e7e2';
-
   useEffect(() => {setStatus(Status.PENDING )
     const trendUrl =
     `${BASE_URL}trending/movie/day?api_key=${keyApi}&page=`;
@@ -27,14 +23,6 @@ export const Home = () => {
           toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
         position: 'top-center'}, ) }
     }
-    
-    // fetchFilms(1,trendUrl).then(films=>{setFilms(films.results)
-    //     setStatus(Status.RESOLVED)})//end then
-      //   .catch( () => 
-      //   {setStatus(Status.REJECTED )
-      //       toast.error("Ups... Something is wrong. Try again!",{duration: 4000,
-      //     position: 'top-center'}, ) 
-      // })//end catch
       fetchData()  
 }, [])
 if(status==="pending"){return <Loader/>}
@@ -43,9 +31,6 @@ if (status === 'resolved'){
     <>
    <FilmsList location ={location} films={films}></FilmsList>
       </>
-       
-     
-   
   );}
    
   };

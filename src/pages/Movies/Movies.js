@@ -1,18 +1,15 @@
-import  {  useState, useEffect}from 'react';
+import  { useState, useEffect}from 'react';
 import { useLocation } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { useSearchParams } from "react-router-dom";
 import { Status, keyApi, fetchFilms,BASE_URL} from 'components/Utils/FetchMovies';
 import { Loader } from 'components/Loader/Loader';
 import { Searchbar } from 'components/SearchBar/SearchBar';
-
 import { FilmsList } from 'components/FilmList/FilmList';
-//  import { status,films } from 'hooks/fetchControls';
-// import { useFetchControls  } from 'hooks/fetchControls';
+
 
 export const Movies =()=>{  
   const location = useLocation();
-  console.log("Movies",location)
     const [ status, setStatus] = useState("Status.IDLE"); 
     const [ films, setFilms] = useState (null)
     const [searchParams, setSearchParams] = useSearchParams();
@@ -22,11 +19,7 @@ export const Movies =()=>{
 const handleFormSubmit = query => {
     const nextQuery = query!== "" ? { query } : {};
     setSearchParams(nextQuery);
-    
-    
-    //setPage(1) 
 };
-// const keyApi='894ef72300682f1db325dae2afe3e7e2'
 useEffect(() => { 
     if (queryFilm){setStatus(Status.PENDING )
        const searchUrl =
@@ -40,7 +33,6 @@ async function fetchData() {
         setStatus(Status.IDLE ) 
         setSearchParams({})
     return}
-   
     setFilms(films.results)
     setStatus(Status.RESOLVED)
 } catch (error) {setStatus(Status.REJECTED )
@@ -48,7 +40,6 @@ async function fetchData() {
   position: 'top-center'}, ) 
 }
 }
-
 fetchData();
 }
  
@@ -64,12 +55,5 @@ if(status==="pending"){return <Loader/>}
 
     </>    
   )
-   
-    
-       
-      
 }
 export default Movies;
-//if (status === 'resolved'){ 
- //   <FilmsList films={films}></FilmsList>}
-//https://api.themoviedb.org/3/search/movie?api_key=894ef72300682f1db325dae2afe3e7e2&page=1&query=dog

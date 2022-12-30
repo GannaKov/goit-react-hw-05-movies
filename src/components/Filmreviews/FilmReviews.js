@@ -1,16 +1,14 @@
-import  {  useState, useEffect}from 'react';
+import  { useState, useEffect}from 'react';
 import { useParams } from "react-router-dom";
 import toast from 'react-hot-toast'
 import { Status, keyApi, fetchFilm,BASE_URL} from 'components/Utils/FetchMovies'; 
 import { Loader } from 'components/Loader/Loader';
 import { ReviewsItem, ReviesList,ReviewAuthor,ReviewDate } from './FilmReviews.styled';
 
-//https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=<<api_key>>&language=en-US&page=1
-
 export const FilmReviews = () => {
     const {id} = useParams();
     const [ status, setStatus] = useState("Status.IDLE"); 
-const [reviews, setReviews] = useState (null)
+    const [reviews, setReviews] = useState (null)
 useEffect(() => {setStatus(Status.PENDING )
     async function fetchData() {
    try {
@@ -30,28 +28,19 @@ useEffect(() => {setStatus(Status.PENDING )
  fetchData()},[id])
  if(status==="pending"){return <Loader/>}
  if (status === 'resolved'){ 
-   
-//  const newDate =(time)=>{return new Date(time).toLocaleString()
-  
-
-
-  return ( <>
+  return ( 
+  <>
     {reviews.length?(
     <ReviesList> {reviews.map(({id,author,created_at,content}) => (
     <ReviewsItem key={id  }>
-        
         <ReviewAuthor>{author}</ReviewAuthor>
-       <ReviewDate >{ new Date(created_at).toLocaleString() }</ReviewDate>
-       
+       <ReviewDate >{ new Date(created_at).toLocaleString() }
+    </ReviewDate>
         <p>{content}</p>
     </ReviewsItem>
   ))}</ReviesList>
-):(<p>There are no reviews yet</p>)}
-  
+):(<p>There are no reviews yet</p>)} 
   </>)
 }
 }
   export default FilmReviews
-  //newDate={created_at=>new Date(created_at).toLocaleString()}
-  //newDate={created_at=>new Date(created_at).toLocaleString()}
-  //newDate=(created_at)=>{ new Date(time).toLocaleString() }

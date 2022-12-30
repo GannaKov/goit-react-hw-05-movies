@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import toast from 'react-hot-toast'
 import {FaSistrix} from 'react-icons/fa';
 import React , {  useState}from 'react';
 import {  SearchForm,SearchFormButton, SearchFormButtonLabel, SearchFormInput  } from './SearchBar.styled';
-
 
 export const Searchbar =({onSubm})=>{
   const [searchWord, setSearchWord] = useState("");
@@ -37,4 +37,7 @@ export const Searchbar =({onSubm})=>{
   </SearchForm>
      
     );
+}
+Searchbar.propTypes = {
+  onSubm:PropTypes.func.isRequired
 }
